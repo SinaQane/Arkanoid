@@ -9,7 +9,7 @@ public class Brick
     int x;
     int y;
     int length;
-    int width;
+    int height;
     int lives;
     boolean intact;
     boolean visible;
@@ -20,12 +20,17 @@ public class Brick
     {
         this.x = x;
         this.y = y;
-        this.width = 50;
-        this.length = 75;
+        this.height = 15;
+        this.length = 30;
         this.lives = 1;
         this.intact = true;
         this.visible = true;
         this.prize = null;
+    }
+
+    public Rectangle getBounds()
+    {
+        return new Rectangle(x-length/2, y-height/2, length, height);
     }
 
     public void getHit()
@@ -39,6 +44,26 @@ public class Brick
                 // TODO losePrize
             }
         }
+    }
+
+    public int getX()
+    {
+        return x;
+    }
+
+    public int getY()
+    {
+        return y;
+    }
+
+    public int getLength()
+    {
+        return length;
+    }
+
+    public int getHeight()
+    {
+        return height;
     }
 
     public void setPrize(Prize prize)
