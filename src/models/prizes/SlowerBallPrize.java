@@ -1,5 +1,11 @@
 package models.prizes;
 
-public class SlowerBallPrize
+import models.bricks.Brick;
+
+public class SlowerBallPrize extends Prize
 {
+    SlowerBallPrize(Brick brick)
+    {
+        super(brick);
+    }
 }

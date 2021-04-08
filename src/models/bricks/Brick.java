@@ -1,5 +1,6 @@
 package models.bricks;
 
+import graphics.GamePanel;
 import models.prizes.Prize;
 
 import java.awt.*;
@@ -15,6 +16,7 @@ public class Brick
     boolean visible;
     Prize prize;
     Color color;
+    GamePanel gamePanel;
 
     Brick(int x, int y)
     {
@@ -26,6 +28,16 @@ public class Brick
         this.intact = true;
         this.visible = true;
         this.prize = null;
+    }
+
+    public void setGamePanel(GamePanel gamePanel)
+    {
+        this.gamePanel = gamePanel;
+    }
+
+    public GamePanel getGamePanel()
+    {
+        return gamePanel;
     }
 
     public Rectangle getBounds()
@@ -41,7 +53,7 @@ public class Brick
             if (this.lives == 0)
             {
                 this.intact = false;
-                // TODO losePrize
+                this.prize.setReleased();
             }
         }
     }

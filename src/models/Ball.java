@@ -17,7 +17,7 @@ public class Ball
     long activationTime;
     GamePanel gamePanel;
 
-    Ball(GamePanel gamePanel)
+    Ball()
     {
         this.y = 600; // gamePanel will be 700 * 700
         this.x = 350;
@@ -25,7 +25,6 @@ public class Ball
         this.dx = 0;
         this.dy = 1;
         this.fireBall = false;
-        this.gamePanel = gamePanel;
     }
 
     public Rectangle getBounds()
@@ -43,11 +42,21 @@ public class Ball
         return gamePanel.getPad().getBounds().intersects(getBounds());
     }
 
-    public void setFireBall(boolean active)
+    public void activateFireBall()
     {
-        this.fireBall = active;
+        this.fireBall = true;
         this.activationTime = new Date().getTime();
         // TODO Timer for deactivation
+    }
+
+    public void setGamePanel(GamePanel gamePanel)
+    {
+        this.gamePanel = gamePanel;
+    }
+
+    public GamePanel getGamePanel()
+    {
+        return gamePanel;
     }
 
     public void intersections()

@@ -1,5 +1,19 @@
 package models.prizes;
 
-public class BiggerPadPrize
+import models.User;
+import models.bricks.Brick;
+
+public class BiggerPadPrize extends Prize
 {
+
+    BiggerPadPrize(Brick brick)
+    {
+        super(brick);
+    }
+
+    @Override
+    public void usePrize(User user)
+    {
+        user.getGamePanel().getPad().bigger();
+    }
 }
