@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class RandomPrize extends Prize
 {
-    RandomPrize(Brick brick)
+    public RandomPrize(Brick brick)
     {
         super(brick);
         this.kind = "RANDOM";

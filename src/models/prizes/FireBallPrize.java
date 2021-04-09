@@ -6,7 +6,7 @@ import models.bricks.Brick;
 
 public class FireBallPrize extends Prize
 {
-    FireBallPrize(Brick brick)
+    public FireBallPrize(Brick brick)
     {
         super(brick);
         this.kind = "FIREBALL";

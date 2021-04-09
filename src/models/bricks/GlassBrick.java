@@ -3,7 +3,7 @@ package models.bricks;
 public class GlassBrick extends Brick
 {
 
-    GlassBrick(int x, int y)
+    public GlassBrick(double x, double y)
     {
         super(x, y);
         this.kind = "GLASS";

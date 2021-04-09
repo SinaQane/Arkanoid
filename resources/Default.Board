@@ -1,0 +1,11 @@
+BRICKS[ n ]:
+x y kind lives prizeKind
+
+BALLS[ k ]:
+x y dx dy fireBall activationTime
+
+PAD[ 1 ]:
+x y length dizzy activationTime
+
+INFO[ 1 ]:
+score lives

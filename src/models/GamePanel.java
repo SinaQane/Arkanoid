@@ -1,8 +1,5 @@
 package models;
 
-import models.Ball;
-import models.Pad;
-import models.User;
 import models.bricks.Brick;
 
 import java.util.List;
@@ -16,7 +13,7 @@ public class GamePanel
     List<Ball> balls;
     List<Brick> bricks;
 
-    GamePanel(User user, List<Brick> bricks, List<Ball> balls, Pad pad)
+    public GamePanel(User user, List<Brick> bricks, List<Ball> balls, Pad pad)
     {
         this.height = 700;
         this.length = 700;

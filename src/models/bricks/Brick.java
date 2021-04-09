@@ -19,7 +19,7 @@ public class Brick
     Color color;
     GamePanel gamePanel;
 
-    Brick(int x, int y)
+    Brick(double x, double y)
     {
         this.x = x;
         this.y = y;
@@ -87,5 +87,10 @@ public class Brick
     public void setPrize(Prize prize)
     {
         this.prize = prize;
+    }
+
+    public void setLives(int lives)
+    {
+        this.lives = lives;
     }
 }

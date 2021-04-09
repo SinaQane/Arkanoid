@@ -3,7 +3,7 @@ package models.bricks;
 public class InvisibleBrick extends GlassBrick
 {
 
-    InvisibleBrick(int x, int y)
+    public InvisibleBrick(double x, double y)
     {
         super(x, y);
         this.visible = false;

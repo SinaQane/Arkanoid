@@ -24,6 +24,7 @@ public class Ball
         this.dx = 0;
         this.dy = 5;
         this.fireBall = false;
+        this.activationTime = 0;
     }
 
     public void activateFireBall()
@@ -63,6 +64,16 @@ public class Ball
     public void setDy(double dy)
     {
         this.dy = dy;
+    }
+
+    public void setFireBall(boolean fireBall)
+    {
+        this.fireBall = fireBall;
+    }
+
+    public void setActivationTime(long activationTime)
+    {
+        this.activationTime = activationTime;
     }
 
     public double getX() {

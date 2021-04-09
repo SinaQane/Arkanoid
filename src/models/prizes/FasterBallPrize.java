@@ -6,7 +6,7 @@ import models.bricks.Brick;
 
 public class FasterBallPrize extends Prize
 {
-    FasterBallPrize(Brick brick)
+    public FasterBallPrize(Brick brick)
     {
         super(brick);
         this.kind = "FASTER_BALL";

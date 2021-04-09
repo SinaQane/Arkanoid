@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class TripleBallPrize extends Prize
 {
-    TripleBallPrize(Brick brick)
+    public TripleBallPrize(Brick brick)
     {
         super(brick);
         this.kind = "TRIPLE_BALL";

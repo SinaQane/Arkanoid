@@ -5,7 +5,7 @@ import models.bricks.Brick;
 
 public class DizzyPadPrize extends Prize
 {
-    DizzyPadPrize(Brick brick)
+    public DizzyPadPrize(Brick brick)
     {
         super(brick);
         this.kind = "DIZZY_PAD";

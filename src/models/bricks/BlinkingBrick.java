@@ -3,11 +3,11 @@ package models.bricks;
 public class BlinkingBrick extends Brick
 {
     boolean inSight;
-    BlinkingBrick(int x, int y)
+    public BlinkingBrick(double x, double y)
     {
         super(x, y);
         this.inSight = true;
-        this.kind = "BLINK";
+        this.kind = "BLINKING";
     }
 
     public void blink()

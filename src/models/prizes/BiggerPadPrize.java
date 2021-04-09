@@ -6,7 +6,7 @@ import models.bricks.Brick;
 public class BiggerPadPrize extends Prize
 {
 
-    BiggerPadPrize(Brick brick)
+    public BiggerPadPrize(Brick brick)
     {
         super(brick);
         this.kind = "BIGGER_PAD";

@@ -5,15 +5,15 @@ import java.util.Date;
 
 public class Pad
 {
-    int x;
-    int y;
-    int length;
-    int height;
+    double x;
+    double y;
+    double length;
+    double height;
     long activationTime;
     boolean dizzy;
     GamePanel gamePanel;
 
-    Pad()
+    public Pad()
     {
         this.x = 350;
         this.y = 650;
@@ -34,7 +34,7 @@ public class Pad
 
     public Rectangle getBounds()
     {
-        return new Rectangle(x-length/2, y-height/2, length, height);
+        return new Rectangle((int)(x-length/2), (int)(y-height/2), (int)length, (int)height);
     }
 
     public void activateDizzy()
@@ -94,5 +94,29 @@ public class Pad
             length -= 25;
         else
             length = 50;
+    }
+    public void setX(double x)
+    {
+        this.x = x;
+    }
+
+    public void setY(double y)
+    {
+        this.y = y;
+    }
+
+    public void setLength(double length)
+    {
+        this.length = length;
+    }
+
+    public void setActivationTime(long activationTime)
+    {
+        this.activationTime = activationTime;
+    }
+
+    public void setDizzy(boolean dizzy)
+    {
+        this.dizzy = dizzy;
     }
 }
