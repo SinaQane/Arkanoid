@@ -174,6 +174,20 @@ public class Load
         return null;
     }
 
+    public List<String> getGames(String user)
+    {
+        List<String> games = new LinkedList<>();
+        File gamesDir = new File("./resources/games");
+        for (File file : Objects.requireNonNull(gamesDir.listFiles()))
+        {
+            String[] splitPath = file.getPath().split("/");
+            String userName = splitPath[splitPath.length - 1].split("-")[0];
+            if (userName.equals(user))
+                games.add(splitPath[splitPath.length - 1].split("-")[1].split("\\.")[0]);
+        }
+        return games;
+    }
+
     public String loadScoreBoard()
     {
         return "";
