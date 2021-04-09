@@ -1,7 +1,9 @@
 package models;
 
 import models.bricks.Brick;
+import models.prizes.Prize;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class GamePanel
@@ -13,6 +15,7 @@ public class GamePanel
     User user;
     List<Ball> balls;
     List<Brick> bricks;
+    List<Prize> releasedPrizes;
 
     public GamePanel(String name, User user, List<Brick> bricks, List<Ball> balls, Pad pad)
     {
@@ -23,6 +26,7 @@ public class GamePanel
         this.balls = balls;
         this.user = user;
         this.bricks = bricks;
+        this.releasedPrizes = new LinkedList<>();
         pad.setGamePanel(this);
         user.setGamePanel(this);
         for (Ball ball: balls)
@@ -67,5 +71,10 @@ public class GamePanel
     public List<Brick> getBricks()
     {
         return this.bricks;
+    }
+
+    public List<Prize> getReleasedPrizes()
+    {
+        return this.releasedPrizes;
     }
 }

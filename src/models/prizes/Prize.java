@@ -15,7 +15,6 @@ public class Prize
     boolean released;
     String kind;
 
-
     Prize(Brick brick)
     {
         this.brick = brick;
@@ -30,7 +29,10 @@ public class Prize
     public void setReleased()
     {
         this.released = true;
-        // TODO move();
+        this.brick.getGamePanel().getReleasedPrizes().add(this);
+        y = y + dy;
+        if (y > this.brick.getGamePanel().getHeight())
+            this.brick.getGamePanel().getReleasedPrizes().remove(this);
     }
 
     public Rectangle getBounds()

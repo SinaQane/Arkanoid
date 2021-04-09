@@ -31,7 +31,14 @@ public class Ball
     {
         this.fireBall = true;
         this.activationTime = new Date().getTime();
-        // TODO Timer for deactivation
+    }
+
+    public void deactivateFireBall() // TODO Use this in graphics
+    {
+        if (new Date().getTime() - this.getActivationTime() < 30000)
+            return;
+        this.fireBall = false;
+        this.activationTime = 0;
     }
 
     public void faster()
@@ -119,15 +126,15 @@ public class Ball
 
     public boolean brickCollision(Brick brick)
     {
-        return brick.getBounds().intersects(getBounds());
+        return brick.getBounds().intersects(this.getBounds());
     }
 
     public boolean padCollision()
     {
-        return gamePanel.getPad().getBounds().intersects(getBounds());
+        return gamePanel.getPad().getBounds().intersects(this.getBounds());
     }
 
-    public void intersections()
+    public void checkIntersections()
     {
         // Panel intersections
         if (x + dx + radius < 0)
@@ -146,17 +153,23 @@ public class Ball
         // Brick intersections
         for (Brick brick : gamePanel.getBricks())
         {
-            if (this.brickCollision(brick))
+            if (brick.getIntact())
             {
-                if (y + radius - Math.abs(dy) - 1 <= brick.getY() - brick.getHeight()/2)
-                    dy = -Math.abs(dy);
-                else if (y + radius + Math.abs(dy) + 1 >= brick.getY() + brick.getHeight()/2)
-                    dy = Math.abs(dy);
-                else if (x + radius - Math.abs(dx) - 1 <= brick.getX() - brick.getLength()/2)
-                    dx = -Math.abs(dx);
-                else if (x + radius + Math.abs(dx) + 1 >= brick.getX() + brick.getLength()/2)
-                    dx = Math.abs(dx);
-                brick.getHit();
+                if (this.brickCollision(brick))
+                {
+                    if (!this.fireBall && brick.getInSight())
+                    {
+                        if (y + radius - Math.abs(dy) - 1 <= brick.getY() - brick.getHeight() / 2)
+                            dy = -Math.abs(dy);
+                        else if (y + radius + Math.abs(dy) + 1 >= brick.getY() + brick.getHeight() / 2)
+                            dy = Math.abs(dy);
+                        else if (x + radius - Math.abs(dx) - 1 <= brick.getX() - brick.getLength() / 2)
+                            dx = -Math.abs(dx);
+                        else if (x + radius + Math.abs(dx) + 1 >= brick.getX() + brick.getLength() / 2)
+                            dx = Math.abs(dx);
+                    }
+                    brick.getHit();
+                }
             }
         }
 
@@ -170,8 +183,8 @@ public class Ball
 
     public void move()
     {
+        this.checkIntersections();
         x = x + dx;
         y = y + dy;
     }
-
 }

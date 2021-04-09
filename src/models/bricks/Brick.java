@@ -13,10 +13,10 @@ public class Brick
     double height;
     int lives;
     boolean intact;
+    boolean inSight;
     boolean visible;
     String kind;
     Prize prize;
-    Color color;
     GamePanel gamePanel;
 
     Brick(double x, double y)
@@ -27,6 +27,7 @@ public class Brick
         this.length = 30;
         this.lives = 1;
         this.intact = true;
+        this.inSight = true;
         this.visible = true;
         this.prize = null;
     }
@@ -101,8 +102,18 @@ public class Brick
         return lives;
     }
 
+    public boolean getInSight()
+    {
+        return inSight;
+    }
+
     public Prize getPrize()
     {
         return prize;
+    }
+
+    public boolean getIntact()
+    {
+        return this.intact;
     }
 }

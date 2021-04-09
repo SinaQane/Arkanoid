@@ -1,5 +1,7 @@
 package models;
 
+import models.prizes.Prize;
+
 import java.awt.*;
 import java.util.Date;
 
@@ -41,7 +43,19 @@ public class Pad
     {
         this.dizzy = true;
         this.activationTime = new Date().getTime();
-        // TODO Timer for deactivation
+    }
+
+    public void deactivateDizzy() // TODO Use this in graphics
+    {
+        if (new Date().getTime() - this.getActivationTime() < 30000)
+            return;
+        this.dizzy = false;
+        this.activationTime = 0;
+    }
+
+    public boolean prizeCollision(Prize prize)
+    {
+        return this.getBounds().intersects(prize.getBounds());
     }
 
     public void moveLeft()
@@ -60,6 +74,14 @@ public class Pad
             else
                 x = length / 2;
         }
+        for (Prize prize : this.getGamePanel().getReleasedPrizes())
+        {
+            if (this.prizeCollision(prize))
+            {
+                prize.usePrize(this.getGamePanel().getUser());
+                this.getGamePanel().getReleasedPrizes().remove(prize);
+            }
+        }
     }
 
     public void moveRight()
@@ -77,6 +99,14 @@ public class Pad
                 x = x - length/10;
             else
                 x = gamePanel.getLength() - length/2;
+        }
+        for (Prize prize : this.getGamePanel().getReleasedPrizes())
+        {
+            if (this.prizeCollision(prize))
+            {
+                prize.usePrize(this.getGamePanel().getUser());
+                this.getGamePanel().getReleasedPrizes().remove(prize);
+            }
         }
     }
 

@@ -42,7 +42,8 @@ public class User
         if (this.lives == 0)
         {
             lose();
-        }*/
+        }
+        */
     }
 
     public String getName()
