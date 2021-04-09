@@ -1,7 +1,5 @@
 package models;
 
-import graphics.GamePanel;
-
 import java.awt.*;
 import java.util.Date;
 

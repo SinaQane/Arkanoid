@@ -8,6 +8,7 @@ public class DizzyPadPrize extends Prize
     DizzyPadPrize(Brick brick)
     {
         super(brick);
+        this.kind = "DIZZY_PAD";
     }
 
     @Override

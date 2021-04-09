@@ -7,5 +7,6 @@ public class InvisibleBrick extends GlassBrick
     {
         super(x, y);
         this.visible = false;
+        this.kind = "INVISIBLE";
     }
 }

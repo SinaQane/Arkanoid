@@ -9,6 +9,7 @@ public class BiggerPadPrize extends Prize
     BiggerPadPrize(Brick brick)
     {
         super(brick);
+        this.kind = "BIGGER_PAD";
     }
 
     @Override

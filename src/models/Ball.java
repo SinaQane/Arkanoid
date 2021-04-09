@@ -1,6 +1,5 @@
 package models;
 
-import graphics.GamePanel;
 import models.bricks.Brick;
 
 import java.awt.*;
@@ -8,28 +7,93 @@ import java.util.Date;
 
 public class Ball
 {
-    int x;
-    int y;
-    int radius;
-    int dx;
-    int dy;
+    double x;
+    double y;
+    double radius;
+    double dx;
+    double dy;
     boolean fireBall;
     long activationTime;
     GamePanel gamePanel;
 
-    Ball()
+    public Ball()
     {
         this.y = 600; // gamePanel will be 700 * 700
         this.x = 350;
         this.radius = 10;
         this.dx = 0;
-        this.dy = 1;
+        this.dy = 5;
         this.fireBall = false;
+    }
+
+    public void activateFireBall()
+    {
+        this.fireBall = true;
+        this.activationTime = new Date().getTime();
+        // TODO Timer for deactivation
+    }
+
+    public void faster()
+    {
+        this.dx = 1.25 * dx;
+        this.dy = 1.25 * dy;
+    }
+
+    public void slower()
+    {
+        this.dx = 0.8 * dx;
+        this.dy = 0.8 * dy;
+    }
+
+    public void setX(double x)
+    {
+        this.x = x;
+    }
+
+    public void setY(double y)
+    {
+        this.y = y;
+    }
+
+    public void setDx(double dx)
+    {
+        this.dx = dx;
+    }
+
+    public void setDy(double dy)
+    {
+        this.dy = dy;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getDx() {
+        return dx;
+    }
+
+    public double getDy() {
+        return dy;
+    }
+
+    public GamePanel getGamePanel()
+    {
+        return gamePanel;
+    }
+
+    public void setGamePanel(GamePanel gamePanel)
+    {
+        this.gamePanel = gamePanel;
     }
 
     public Rectangle getBounds()
     {
-        return new Rectangle(x-radius, y-radius, 2*radius, 2*radius);
+        return new Rectangle((int)(x-radius), (int)(y-radius), (int)(2*radius), (int)(2*radius));
     }
 
     public boolean brickCollision(Brick brick)
@@ -42,23 +106,6 @@ public class Ball
         return gamePanel.getPad().getBounds().intersects(getBounds());
     }
 
-    public void activateFireBall()
-    {
-        this.fireBall = true;
-        this.activationTime = new Date().getTime();
-        // TODO Timer for deactivation
-    }
-
-    public void setGamePanel(GamePanel gamePanel)
-    {
-        this.gamePanel = gamePanel;
-    }
-
-    public GamePanel getGamePanel()
-    {
-        return gamePanel;
-    }
-
     public void intersections()
     {
         // Panel intersections
@@ -69,7 +116,11 @@ public class Ball
         else if (y + dy + radius < 0)
             dy = -dy;
         else if (y + dy + radius > gamePanel.getHeight())
-            gamePanel.getUser().loseLife();
+        {
+            if (gamePanel.getBalls().size()==1)
+                gamePanel.getUser().loseLife();
+            gamePanel.getBalls().remove(this);
+        }
 
         // Brick intersections
         for (Brick brick : gamePanel.getBricks())
@@ -101,6 +152,5 @@ public class Ball
         x = x + dx;
         y = y + dy;
     }
-
 
 }

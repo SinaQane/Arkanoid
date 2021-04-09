@@ -6,5 +6,6 @@ public class WoodenBrick extends Brick
     {
         super(x, y);
         this.lives = 2;
+        this.kind = "WOODEN";
     }
 }

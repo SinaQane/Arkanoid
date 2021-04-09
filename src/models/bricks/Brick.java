@@ -1,19 +1,20 @@
 package models.bricks;
 
-import graphics.GamePanel;
+import models.GamePanel;
 import models.prizes.Prize;
 
 import java.awt.*;
 
 public class Brick
 {
-    int x;
-    int y;
-    int length;
-    int height;
+    double x;
+    double y;
+    double length;
+    double height;
     int lives;
     boolean intact;
     boolean visible;
+    String kind;
     Prize prize;
     Color color;
     GamePanel gamePanel;
@@ -42,7 +43,7 @@ public class Brick
 
     public Rectangle getBounds()
     {
-        return new Rectangle(x-length/2, y-height/2, length, height);
+        return new Rectangle((int)(x-length/2), (int)(y-height/2), (int)(length), (int)(height));
     }
 
     public void getHit()
@@ -58,22 +59,27 @@ public class Brick
         }
     }
 
-    public int getX()
+    public String getKind()
+    {
+        return kind;
+    }
+
+    public double getX()
     {
         return x;
     }
 
-    public int getY()
+    public double getY()
     {
         return y;
     }
 
-    public int getLength()
+    public double getLength()
     {
         return length;
     }
 
-    public int getHeight()
+    public double getHeight()
     {
         return height;
     }

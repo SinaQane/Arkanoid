@@ -7,17 +7,18 @@ public class BlinkingBrick extends Brick
     {
         super(x, y);
         this.inSight = true;
+        this.kind = "BLINK";
     }
 
     public void blink()
     {
-
+        // TODO change inSight every n seconds
     }
 
     @Override
     public void getHit()
     {
-        if (this.inSight)
+        if (this.inSight) // TODO fix this in Ball class
             super.getHit();
     }
 }

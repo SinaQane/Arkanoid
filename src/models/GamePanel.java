@@ -1,4 +1,4 @@
-package graphics;
+package models;
 
 import models.Ball;
 import models.Pad;
@@ -12,21 +12,24 @@ public class GamePanel
     int height;
     int length;
     Pad pad;
-    Ball ball;
     User user;
+    List<Ball> balls;
     List<Brick> bricks;
 
-    GamePanel(User user, List<Brick> bricks, Ball ball, Pad pad)
+    GamePanel(User user, List<Brick> bricks, List<Ball> balls, Pad pad)
     {
         this.height = 700;
         this.length = 700;
         this.pad = pad;
-        this.ball = ball;
+        this.balls = balls;
         this.user = user;
         this.bricks = bricks;
         pad.setGamePanel(this);
         user.setGamePanel(this);
-        ball.setGamePanel(this);
+        for (Ball ball: balls)
+        {
+            ball.setGamePanel(this);
+        }
         for (Brick brick : bricks)
         {
             brick.setGamePanel(this);
@@ -53,8 +56,8 @@ public class GamePanel
         return this.pad;
     }
 
-    public Ball getBall() {
-        return ball;
+    public List<Ball> getBalls() {
+        return this.balls;
     }
 
     public List<Brick> getBricks()

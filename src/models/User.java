@@ -1,7 +1,5 @@
 package models;
 
-import graphics.GamePanel;
-
 public class User
 {
     int lives;

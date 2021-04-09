@@ -8,11 +8,13 @@ import java.awt.*;
 public class Prize
 {
     Brick brick;
-    int x;
-    int y;
-    int dy;
-    int radius;
+    double x;
+    double y;
+    double dy;
+    double radius;
     boolean released;
+    String kind;
+
 
     Prize(Brick brick)
     {
@@ -33,11 +35,16 @@ public class Prize
 
     public Rectangle getBounds()
     {
-        return new Rectangle(x-radius, y-radius, 2*radius, 2*radius);
+        return new Rectangle((int)(x-radius), (int)(y-radius), (int)(2*radius), (int)(2*radius));
     }
 
     public void usePrize(User user)
     {
         System.out.println("Use Prize");
+    }
+
+    public String getKind()
+    {
+        return kind;
     }
 }
