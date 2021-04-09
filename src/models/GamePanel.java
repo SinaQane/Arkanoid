@@ -6,6 +6,7 @@ import java.util.List;
 
 public class GamePanel
 {
+    String name;
     int height;
     int length;
     Pad pad;
@@ -13,8 +14,9 @@ public class GamePanel
     List<Ball> balls;
     List<Brick> bricks;
 
-    public GamePanel(User user, List<Brick> bricks, List<Ball> balls, Pad pad)
+    public GamePanel(String name, User user, List<Brick> bricks, List<Ball> balls, Pad pad)
     {
+        this.name = name;
         this.height = 700;
         this.length = 700;
         this.pad = pad;
@@ -31,6 +33,11 @@ public class GamePanel
         {
             brick.setGamePanel(this);
         }
+    }
+
+    public String getName()
+    {
+        return name;
     }
 
     public User getUser()

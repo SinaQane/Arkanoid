@@ -92,6 +92,16 @@ public class Ball
         return dy;
     }
 
+    public boolean getFireBall()
+    {
+        return fireBall;
+    }
+
+    public long getActivationTime()
+    {
+        return activationTime;
+    }
+
     public GamePanel getGamePanel()
     {
         return gamePanel;

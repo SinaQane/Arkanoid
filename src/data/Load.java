@@ -131,14 +131,16 @@ public class Load
             scanner.nextLine();
 
             String[] userArray = scanner.nextLine().split(" ");
-            int score = Integer.parseInt(userArray[0]);
-            int lives = Integer.parseInt(userArray[1]);
+            String playerName = userArray[0];
+            String gameName = userArray[1];
+            int score = Integer.parseInt(userArray[2]);
+            int lives = Integer.parseInt(userArray[3]);
 
-            User user = new User();
+            User user = new User(playerName);
             user.setScore(score);
             user.setLives(lives);
 
-            return new GamePanel(user, bricks, balls, pad);
+            return new GamePanel(gameName, user, bricks, balls, pad);
         }
         catch (FileNotFoundException e)
         {
@@ -161,7 +163,7 @@ public class Load
         return null;
     }
 
-    private File getGameFile(String user, String game)
+    public static File getGameFile(String user, String game)
     {
         File gamesDir = new File("./resources/games");
         for (File file : Objects.requireNonNull(gamesDir.listFiles()))

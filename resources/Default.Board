@@ -8,4 +8,4 @@ PAD[ 1 ]:
 x y length dizzy activationTime
 
 INFO[ 1 ]:
-score lives
+player game score lives

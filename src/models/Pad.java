@@ -119,4 +119,29 @@ public class Pad
     {
         this.dizzy = dizzy;
     }
+
+    public double getX()
+    {
+        return x;
+    }
+
+    public double getY()
+    {
+        return y;
+    }
+
+    public double getLength()
+    {
+        return length;
+    }
+
+    public long getActivationTime()
+    {
+        return activationTime;
+    }
+
+    public boolean getDizzy()
+    {
+        return dizzy;
+    }
 }

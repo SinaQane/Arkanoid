@@ -2,12 +2,14 @@ package models;
 
 public class User
 {
+    String name;
     int lives;
     int score;
     GamePanel gamePanel;
 
-    public User()
+    public User(String name)
     {
+        this.name = name;
         this.lives = 3;
         this.score = 0;
     }
@@ -41,5 +43,20 @@ public class User
         {
             lose();
         }*/
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public int getLives()
+    {
+        return lives;
+    }
+
+    public int getScore()
+    {
+        return score;
     }
 }

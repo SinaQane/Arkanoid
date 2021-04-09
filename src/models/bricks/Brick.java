@@ -92,5 +92,17 @@ public class Brick
     public void setLives(int lives)
     {
         this.lives = lives;
+        if (lives == 0)
+            this.intact = false;
+    }
+
+    public int getLives()
+    {
+        return lives;
+    }
+
+    public Prize getPrize()
+    {
+        return prize;
     }
 }
