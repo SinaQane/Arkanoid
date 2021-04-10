@@ -59,31 +59,40 @@ public class Load
                 {
                     case "BIGGER_PAD":
                         prize = new BiggerPadPrize(brick);
+                        brick.setPrize(prize);
                         break;
                     case "SMALLER_PAD":
                         prize = new SmallerPadPrize(brick);
+                        brick.setPrize(prize);
                         break;
                     case "FASTER_BALL":
                         prize = new FasterBallPrize(brick);
+                        brick.setPrize(prize);
                         break;
                     case "SLOWER_BALL":
                         prize = new SlowerBallPrize(brick);
+                        brick.setPrize(prize);
                         break;
                     case "FIREBALL":
                         prize = new FireBallPrize(brick);
+                        brick.setPrize(prize);
                         break;
                     case "DIZZY_PAD":
                         prize = new DizzyPadPrize(brick);
+                        brick.setPrize(prize);
                         break;
                     case "TRIPLE_BALL":
                         prize = new TripleBallPrize(brick);
+                        brick.setPrize(prize);
                         break;
                     case "RANDOM":
                         prize = new RandomPrize(brick);
+                        brick.setPrize(prize);
+                        break;
+                    case "NULL":
                         break;
                 }
 
-                brick.setPrize(prize);
                 bricks.add(brick);
             }
 

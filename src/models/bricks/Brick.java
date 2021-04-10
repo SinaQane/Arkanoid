@@ -23,8 +23,8 @@ public class Brick
     {
         this.x = x;
         this.y = y;
-        this.height = 15;
-        this.length = 30;
+        this.height = 50;
+        this.length = 100;
         this.lives = 1;
         this.intact = true;
         this.inSight = true;
@@ -95,6 +95,11 @@ public class Brick
         this.lives = lives;
         if (lives == 0)
             this.intact = false;
+    }
+
+    public void setY(double y)
+    {
+        this.y = y;
     }
 
     public int getLives()

@@ -18,8 +18,8 @@ public class Ball
 
     public Ball()
     {
-        this.y = 600; // gamePanel will be 700 * 700
-        this.x = 350;
+        this.y = 700;
+        this.x = 500;
         this.radius = 10;
         this.dx = 0;
         this.dy = 5;

@@ -17,10 +17,10 @@ public class Pad
 
     public Pad()
     {
-        this.x = 350;
-        this.y = 650;
+        this.x = 500;
+        this.y = 785;
         this.height = 30;
-        this.length = 100;
+        this.length = 200;
         this.dizzy = false;
     }
 
@@ -63,7 +63,7 @@ public class Pad
         if (dizzy)
         {
             if (x + length/10 < gamePanel.getLength())
-                x = x - length/10;
+                x = x + length/10;
             else
                 x = gamePanel.getLength() - length/2;
         }
@@ -96,7 +96,7 @@ public class Pad
         else
         {
             if (x + length/10 < gamePanel.getLength())
-                x = x - length/10;
+                x = x + length/10;
             else
                 x = gamePanel.getLength() - length/2;
         }
@@ -125,6 +125,7 @@ public class Pad
         else
             length = 50;
     }
+
     public void setX(double x)
     {
         this.x = x;

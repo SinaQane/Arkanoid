@@ -4,6 +4,7 @@ import models.Ball;
 import models.GamePanel;
 import models.Pad;
 import models.bricks.Brick;
+import models.prizes.Prize;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,8 +28,14 @@ public class Save
         for (int i = 0; i < gamePanel.getBricks().size(); i++)
         {
             Brick brick = gamePanel.getBricks().get(i);
+            Prize prize = brick.getPrize();
+            String prizeString;
+            if (prize == null)
+                prizeString = "NULL";
+            else
+                prizeString = prize.getKind();
             printStream.println(brick.getX() + " " + brick.getY() + " " + brick.getKind()
-                    + " " + brick.getLives() + " " + brick.getPrize().getKind());
+                    + " " + brick.getLives() + " " + prizeString);
         }
 
         printStream.println();
