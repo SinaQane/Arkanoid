@@ -45,7 +45,7 @@ public class Pad
         this.activationTime = new Date().getTime();
     }
 
-    public void deactivateDizzy() // TODO Use this in graphics
+    public void deactivateDizzy()
     {
         if (new Date().getTime() - this.getActivationTime() < 30000)
             return;
@@ -58,7 +58,7 @@ public class Pad
         return this.getBounds().intersects(prize.getBounds());
     }
 
-    public void moveLeft()
+    public void moveLeft() // TODO Use this in ActionListener
     {
         if (dizzy)
         {
@@ -84,7 +84,7 @@ public class Pad
         }
     }
 
-    public void moveRight()
+    public void moveRight() // TODO Use this in ActionListener
     {
         if (dizzy)
         {

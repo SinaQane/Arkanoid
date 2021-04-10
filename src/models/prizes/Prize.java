@@ -30,6 +30,10 @@ public class Prize
     {
         this.released = true;
         this.brick.getGamePanel().getReleasedPrizes().add(this);
+    }
+
+    public void movePrize()
+    {
         y = y + dy;
         if (y > this.brick.getGamePanel().getHeight())
             this.brick.getGamePanel().getReleasedPrizes().remove(this);

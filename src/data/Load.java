@@ -9,14 +9,15 @@ import models.prizes.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class Load
 {
-    public GamePanel loadGame(String path)
+    public static GamePanel loadGame(String path)
     {
         try
         {
@@ -53,7 +54,7 @@ public class Load
                 assert brick != null;
                 brick.setLives(lives);
 
-                Prize prize = null;
+                Prize prize;
 
                 switch (brickArray[4])
                 {
@@ -90,6 +91,7 @@ public class Load
                         brick.setPrize(prize);
                         break;
                     case "NULL":
+                        brick.setPrize(null);
                         break;
                 }
 
@@ -160,12 +162,12 @@ public class Load
         return null;
     }
 
-    public GamePanel newGame()
+    public static GamePanel newGame()
     {
         return loadGame("./resources/Default.Board");
     }
 
-    public GamePanel oldGame(String user, String game)
+    public static GamePanel oldGame(String user, String game)
     {
         if (getGameFile(user, game) != null)
             return loadGame("./resources/games" + user + "-" + game + ".Board");
@@ -197,8 +199,30 @@ public class Load
         return games;
     }
 
-    public String loadScoreBoard()
+    public String loadScoreBoard() throws IOException
     {
-        return "";
+        String path = "./resources/Scoreboard.txt";
+        List<String> fileContent = Files.readAllLines(Paths.get(path), StandardCharsets.UTF_8);
+        StringBuilder result = new StringBuilder();
+        Map<String, Integer> scoreBoard = new HashMap<>();
+        for (String string : fileContent) {
+            String[] person = string.split(" ");
+            scoreBoard.put(person[0], Integer.parseInt(person[1]));
+        }
+        for (Map.Entry<String, Integer> e : sortByValue(scoreBoard).entrySet())
+            result.append(e.getKey()).append(": ").append(e.getValue()).append("\n");
+        return result.toString();
+    }
+
+    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map)
+    {
+        List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
+        list.sort(Map.Entry.comparingByValue());
+        Map<K, V> result = new LinkedHashMap<>();
+        for (Map.Entry<K, V> entry : list)
+        {
+            result.put(entry.getKey(), entry.getValue());
+        }
+        return result;
     }
 }

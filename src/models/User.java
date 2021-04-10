@@ -37,13 +37,11 @@ public class User
     public void loseLife()
     {
         this.lives--;
-        /*
-        TODO add losing
-        if (this.lives == 0)
-        {
-            lose();
-        }
-        */
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
     public String getName()

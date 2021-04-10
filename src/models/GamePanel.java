@@ -82,6 +82,11 @@ public class GamePanel
         return this.releasedPrizes;
     }
 
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
     public void addRow()
     {
         if (new Date().getTime() - rowAddedTime > 10000)

@@ -33,7 +33,7 @@ public class Ball
         this.activationTime = new Date().getTime();
     }
 
-    public void deactivateFireBall() // TODO Use this in graphics
+    public void deactivateFireBall()
     {
         if (new Date().getTime() - this.getActivationTime() < 30000)
             return;
@@ -99,6 +99,11 @@ public class Ball
         return dy;
     }
 
+    public double getRadius()
+    {
+        return radius;
+    }
+
     public boolean getFireBall()
     {
         return fireBall;
@@ -143,12 +148,6 @@ public class Ball
             dx = -dx;
         else if (y + dy + radius < 0)
             dy = -dy;
-        else if (y + dy + radius > gamePanel.getHeight())
-        {
-            if (gamePanel.getBalls().size()==1)
-                gamePanel.getUser().loseLife();
-            gamePanel.getBalls().remove(this);
-        }
 
         // Brick intersections
         for (Brick brick : gamePanel.getBricks())
@@ -181,7 +180,7 @@ public class Ball
         }
     }
 
-    public void move()
+    public void moveBall()
     {
         this.checkIntersections();
         x = x + dx;
