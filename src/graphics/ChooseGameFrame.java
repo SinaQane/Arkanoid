@@ -36,7 +36,9 @@ public class ChooseGameFrame extends JFrame implements ActionListener
         frame.add(text);
         frame.add(gamesList);
         frame.add(submitButton);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Choose Game");
         frame.setLayout(new FlowLayout());
         frame.pack();
         frame.setVisible(true);
@@ -53,8 +55,7 @@ public class ChooseGameFrame extends JFrame implements ActionListener
                 logicalAgent = new LogicalAgent(playerName, "GAME_NAME", true);
             else
                 logicalAgent = new LogicalAgent(playerName, game, false);
-            // TODO use logicalAgent to make a GameFrame
-            System.out.println(playerName + " " + game);
+            // TODO use logicalAgent to make a GameFrame(LogicalAgent logicalAgent);
             frame.dispose();
         }
     }

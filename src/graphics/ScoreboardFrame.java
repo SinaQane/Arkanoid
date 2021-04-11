@@ -50,6 +50,7 @@ public class ScoreboardFrame extends JFrame implements ActionListener
         frame.add(panel);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Scoreboard");
         frame.pack();
         frame.setVisible(true);
     }

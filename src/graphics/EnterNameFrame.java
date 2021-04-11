@@ -37,6 +37,7 @@ public class EnterNameFrame extends JPanel implements ActionListener
         frame.add(backButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Enter Name");
         frame.setLayout(new FlowLayout());
         frame.pack();
         frame.setVisible(true);

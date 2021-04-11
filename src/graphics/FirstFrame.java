@@ -33,6 +33,7 @@ public class FirstFrame extends JFrame implements ActionListener
         frame.add(scoreboardButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Arkanoid");
         frame.setLayout(new FlowLayout());
         frame.pack();
         frame.setVisible(true);
