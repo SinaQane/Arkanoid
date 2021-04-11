@@ -185,7 +185,7 @@ public class Load
         return null;
     }
 
-    public List<String> getGames(String user)
+    public static List<String> getGames(String user)
     {
         List<String> games = new LinkedList<>();
         File gamesDir = new File("./resources/games");
@@ -199,30 +199,36 @@ public class Load
         return games;
     }
 
-    public String loadScoreBoard() throws IOException
+    public static String[] loadScoreBoard() throws IOException
     {
         String path = "./resources/Scoreboard.txt";
         List<String> fileContent = Files.readAllLines(Paths.get(path), StandardCharsets.UTF_8);
-        StringBuilder result = new StringBuilder();
-        Map<String, Integer> scoreBoard = new HashMap<>();
-        for (String string : fileContent) {
-            String[] person = string.split(" ");
-            scoreBoard.put(person[0], Integer.parseInt(person[1]));
+        String[] people = new String[fileContent.size()];
+        int[] scores = new int[fileContent.size()];
+        List<String> result = new LinkedList<>();
+        for (int i = 0; i<fileContent.size(); i++) {
+            String[] person = fileContent.get(i).split(" ");
+            people[i] = person[0];
+            scores[i] = Integer.parseInt(person[1]);
         }
-        for (Map.Entry<String, Integer> e : sortByValue(scoreBoard).entrySet())
-            result.append(e.getKey()).append(": ").append(e.getValue()).append("\n");
-        return result.toString();
-    }
-
-    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map)
-    {
-        List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
-        list.sort(Map.Entry.comparingByValue());
-        Map<K, V> result = new LinkedHashMap<>();
-        for (Map.Entry<K, V> entry : list)
+        int size = people.length;
+        for (int i = 0; i < size; i++)
         {
-            result.put(entry.getKey(), entry.getValue());
+            for (int j = i+1; j < size; j++)
+            {
+                if (scores[i] < scores[j])
+                {
+                    int integer = scores[i];
+                    scores[i] = scores[j];
+                    scores[j] = integer;
+                    String string = people[i];
+                    people[i] = people[j];
+                    people[j] = string;
+                }
+            }
         }
-        return result;
+        for (int i = 0; i < people.length; i++)
+            result.add((i+1) + ". " + people[i] + ": " + scores[i]);
+        return result.toArray(new String[0]);
     }
 }
