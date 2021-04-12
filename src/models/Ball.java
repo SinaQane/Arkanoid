@@ -1,5 +1,6 @@
 package models;
 
+import graphics.GameFrame;
 import models.bricks.Brick;
 
 import java.awt.*;
@@ -18,11 +19,11 @@ public class Ball
 
     public Ball()
     {
-        this.y = 700;
-        this.x = 500;
+        this.y = 545;
+        this.x = 600;
         this.radius = 10;
-        this.dx = 0;
-        this.dy = 5;
+        this.dx = 2;
+        this.dy = 2;
         this.fireBall = false;
         this.activationTime = 0;
     }
@@ -83,19 +84,23 @@ public class Ball
         this.activationTime = activationTime;
     }
 
-    public double getX() {
+    public double getX()
+    {
         return x;
     }
 
-    public double getY() {
+    public double getY()
+    {
         return y;
     }
 
-    public double getDx() {
+    public double getDx()
+    {
         return dx;
     }
 
-    public double getDy() {
+    public double getDy()
+    {
         return dy;
     }
 
@@ -126,7 +131,7 @@ public class Ball
 
     public Rectangle getBounds()
     {
-        return new Rectangle((int)(x-radius), (int)(y-radius), (int)(2*radius), (int)(2*radius));
+        return new Rectangle((int)(x), (int)(y), (int)(2*radius), (int)(2*radius));
     }
 
     public boolean brickCollision(Brick brick)
@@ -142,11 +147,13 @@ public class Ball
     public void checkIntersections()
     {
         // Panel intersections
-        if (x + dx + radius < 0)
+        if (x <= 0)
             dx = -dx;
-        else if (x + dx + radius> gamePanel.getLength())
+
+        else if (x + radius>= gamePanel.getLength())
             dx = -dx;
-        else if (y + dy + radius < 0)
+
+        else if (y <= 0)
             dy = -dy;
 
         // Brick intersections
@@ -158,15 +165,19 @@ public class Ball
                 {
                     if (!this.fireBall && brick.getInSight())
                     {
-                        if (y + radius - Math.abs(dy) - 1 <= brick.getY() - brick.getHeight() / 2)
+                        if (y - 2*radius - 5 <= brick.getY())
                             dy = -Math.abs(dy);
-                        else if (y + radius + Math.abs(dy) + 1 >= brick.getY() + brick.getHeight() / 2)
+
+                        else if (y + 5 >= brick.getY() + brick.getHeight())
                             dy = Math.abs(dy);
-                        else if (x + radius - Math.abs(dx) - 1 <= brick.getX() - brick.getLength() / 2)
+
+                        else if (x + 2*radius - 5 <= brick.getX() )
                             dx = -Math.abs(dx);
-                        else if (x + radius + Math.abs(dx) + 1 >= brick.getX() + brick.getLength() / 2)
+
+                        else if (x + 5 >= brick.getX() + brick.getLength())
                             dx = Math.abs(dx);
                     }
+
                     brick.getHit();
                 }
             }

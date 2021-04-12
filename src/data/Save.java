@@ -13,22 +13,32 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
 public class Save
 {
-    public void saveGame(GamePanel gamePanel, String user, String game) throws FileNotFoundException
+    public static void saveGame(GamePanel gamePanel, String user, String game)
     {
         if (Load.getGameFile(user, game) != null)
         {
             if (Objects.requireNonNull(Load.getGameFile(user, game)).delete())
                 System.out.println("File deleted.");
         }
-        File gameFile = new File("./resources/games" + user + "-" + game + ".Board");
-        PrintStream printStream = new PrintStream(gameFile);
+        File gameFile = new File("./resources/games/" + user + "-" + game + ".Board");
+        PrintStream printStream = null;
 
+        try
+        {
+            printStream = new PrintStream(gameFile);
+        }
+
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
+        assert printStream != null;
         printStream.println("BRICKS[ " + gamePanel.getBricks().size() + " ]:");
 
         for (int i = 0; i < gamePanel.getBricks().size(); i++)
@@ -74,16 +84,26 @@ public class Save
 
         printStream.println("INFO[ 1 ]:");
 
-        printStream.println(gamePanel.getUser().getName() + " " + gamePanel.getName()
+        printStream.println(gamePanel.getUser().getName() + " " + game
                 + " " + gamePanel.getUser().getScore() + " " + gamePanel.getUser().getLives());
     }
 
-    public void updateScoreBoard(GamePanel gamePanel) throws IOException
+    public static void updateScoreBoard(GamePanel gamePanel)
     {
         String path = "./resources/Scoreboard.txt";
-        List<String> fileContent = Files.readAllLines(Paths.get(path), StandardCharsets.UTF_8);
+        List<String> fileContent = null;
+
+        try
+        {
+            fileContent = Files.readAllLines(Paths.get(path), StandardCharsets.UTF_8);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
         boolean flag = true;
-        for (int i = 0; i < fileContent.size(); i++)
+        for (int i = 0; i < Objects.requireNonNull(fileContent).size(); i++)
         {
             if (fileContent.get(i).split(" ")[0].equals(gamePanel.getUser().getName()))
             {
@@ -95,6 +115,14 @@ public class Save
         }
         if (flag)
             fileContent.add(gamePanel.getUser().getName() + " " + gamePanel.getUser().getScore());
-        Files.write(Paths.get(path), fileContent, StandardCharsets.UTF_8);
+
+        try
+        {
+            Files.write(Paths.get(path), fileContent, StandardCharsets.UTF_8);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

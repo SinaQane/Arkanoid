@@ -18,8 +18,8 @@ public class Pad
     public Pad()
     {
         this.x = 500;
-        this.y = 785;
-        this.height = 30;
+        this.y = 565;
+        this.height = 5;
         this.length = 200;
         this.dizzy = false;
     }
@@ -36,7 +36,7 @@ public class Pad
 
     public Rectangle getBounds()
     {
-        return new Rectangle((int)(x-length/2), (int)(y-height/2), (int)length, (int)height);
+        return new Rectangle((int)(x), (int)(y), (int)length, (int)height);
     }
 
     public void activateDizzy()
@@ -58,55 +58,39 @@ public class Pad
         return this.getBounds().intersects(prize.getBounds());
     }
 
-    public void moveLeft() // TODO Use this in ActionListener
+    public void moveLeft()
     {
         if (dizzy)
         {
-            if (x + length/10 < gamePanel.getLength())
+            if (x + length + length/10 <= gamePanel.getLength())
                 x = x + length/10;
             else
-                x = gamePanel.getLength() - length/2;
+                x = gamePanel.getLength() - length;
         }
         else
         {
-            if (x - length / 10 > 0)
+            if (x - length / 10 >= 0)
                 x = x - length / 10;
             else
-                x = length / 2;
-        }
-        for (Prize prize : this.getGamePanel().getReleasedPrizes())
-        {
-            if (this.prizeCollision(prize))
-            {
-                prize.usePrize(this.getGamePanel().getUser());
-                this.getGamePanel().getReleasedPrizes().remove(prize);
-            }
+                x = 0;
         }
     }
 
-    public void moveRight() // TODO Use this in ActionListener
+    public void moveRight()
     {
         if (dizzy)
         {
-            if (x - length / 10 > 0)
+            if (x - length / 10 >= 0)
                 x = x - length / 10;
             else
-                x = length / 2;
+                x = 0;
         }
         else
         {
-            if (x + length/10 < gamePanel.getLength())
+            if (x + length + length/10 <= gamePanel.getLength())
                 x = x + length/10;
             else
-                x = gamePanel.getLength() - length/2;
-        }
-        for (Prize prize : this.getGamePanel().getReleasedPrizes())
-        {
-            if (this.prizeCollision(prize))
-            {
-                prize.usePrize(this.getGamePanel().getUser());
-                this.getGamePanel().getReleasedPrizes().remove(prize);
-            }
+                x = gamePanel.getLength() - length;
         }
     }
 
@@ -164,6 +148,11 @@ public class Pad
     public double getLength()
     {
         return length;
+    }
+
+    public double getHeight()
+    {
+        return height;
     }
 
     public long getActivationTime()

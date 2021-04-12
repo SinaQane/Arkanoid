@@ -59,6 +59,7 @@ public class FirstFrame extends JFrame implements ActionListener
             {
                 ioException.printStackTrace();
             }
+            assert scoreBoard != null;
             new ScoreboardFrame(scoreBoard);
         }
     }

@@ -21,9 +21,24 @@ public class Prize
         this.x = brick.getX();
         this.y = brick.getY();
         this.dy = 5;
-        this.radius = 10;
+        this.radius = 5;
         this.released = false;
         brick.setPrize(this);
+    }
+
+    public double getX()
+    {
+        return x;
+    }
+
+    public double getY()
+    {
+        return y;
+    }
+
+    public double getRadius()
+    {
+        return radius;
     }
 
     public void setReleased()
@@ -41,7 +56,7 @@ public class Prize
 
     public Rectangle getBounds()
     {
-        return new Rectangle((int)(x-radius), (int)(y-radius), (int)(2*radius), (int)(2*radius));
+        return new Rectangle((int)(x), (int)(y), (int)(2*radius), (int)(2*radius));
     }
 
     public void usePrize(User user)

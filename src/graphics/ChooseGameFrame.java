@@ -55,7 +55,6 @@ public class ChooseGameFrame extends JFrame implements ActionListener
                 logicalAgent = new LogicalAgent(playerName, "GAME_NAME", true);
             else
                 logicalAgent = new LogicalAgent(playerName, game, false);
-            // TODO use logicalAgent to make a GameFrame(LogicalAgent logicalAgent);
             frame.dispose();
         }
     }

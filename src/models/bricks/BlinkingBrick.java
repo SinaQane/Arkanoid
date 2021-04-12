@@ -12,7 +12,8 @@ public class BlinkingBrick extends Brick
         this.kind = "BLINKING";
     }
 
-    public void blink() // TODO Use this in graphics
+    @Override
+    public void blink()
     {
         if (new Date().getTime() - lastChangeMoodTime >= 5000)
         {

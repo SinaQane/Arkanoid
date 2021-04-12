@@ -191,11 +191,13 @@ public class Load
         File gamesDir = new File("./resources/games");
         for (File file : Objects.requireNonNull(gamesDir.listFiles()))
         {
-            String[] splitPath = file.getPath().split("/");
+            String[] splitPath = file.getPath().split("\\\\");
             String userName = splitPath[splitPath.length - 1].split("-")[0];
+
             if (userName.equals(user))
                 games.add(splitPath[splitPath.length - 1].split("-")[1].split("\\.")[0]);
         }
+
         return games;
     }
 

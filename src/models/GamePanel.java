@@ -23,8 +23,8 @@ public class GamePanel
     public GamePanel(String name, User user, List<Brick> bricks, List<Ball> balls, Pad pad)
     {
         this.name = name;
-        this.height = 800;
-        this.length = 1000;
+        this.height = 600;
+        this.length = 1100;
         this.pad = pad;
         this.balls = balls;
         this.user = user;
@@ -41,11 +41,6 @@ public class GamePanel
         {
             brick.setGamePanel(this);
         }
-    }
-
-    public String getName()
-    {
-        return name;
     }
 
     public User getUser()
@@ -68,7 +63,8 @@ public class GamePanel
         return this.pad;
     }
 
-    public List<Ball> getBalls() {
+    public List<Ball> getBalls()
+    {
         return this.balls;
     }
 
@@ -87,9 +83,17 @@ public class GamePanel
         this.name = name;
     }
 
+    public void newBall()
+    {
+        Ball ball = new Ball();
+        ball.setGamePanel(this);
+        ball.setX(this.getPad().getX()+this.getPad().getLength()/2-ball.radius);
+        this.balls.add(ball);
+    }
+
     public void addRow()
     {
-        if (new Date().getTime() - rowAddedTime > 10000)
+        if (new Date().getTime() - rowAddedTime > 20000)
         {
             for (Brick brick : bricks)
             {
@@ -162,6 +166,7 @@ public class GamePanel
 
                 bricks.add(brick);
             }
+            rowAddedTime = new Date().getTime();
         }
     }
 }

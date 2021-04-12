@@ -44,7 +44,12 @@ public class Brick
 
     public Rectangle getBounds()
     {
-        return new Rectangle((int)(x-length/2), (int)(y-height/2), (int)(length), (int)(height));
+        return new Rectangle((int)(x), (int)(y), (int)(length), (int)(height));
+    }
+
+    public void blink()
+    {
+        System.out.println("Beep");
     }
 
     public void getHit()
@@ -55,7 +60,9 @@ public class Brick
             if (this.lives == 0)
             {
                 this.intact = false;
-                this.prize.setReleased();
+
+                if(this.prize != null)
+                    this.prize.setReleased();
             }
         }
     }
