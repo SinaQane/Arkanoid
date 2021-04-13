@@ -49,6 +49,7 @@ public class ExitFrame extends JFrame implements ActionListener {
         if(e.getSource() == submitButton)
         {
             Save.saveGame(logicalAgent.gamePanel, logicalAgent.gamePanel.getUser().getName(), enterNameField.getText());
+            Save.updateScoreBoard(logicalAgent.gamePanel);
             frame.dispose();
         }
     }

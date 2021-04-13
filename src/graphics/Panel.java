@@ -131,6 +131,7 @@ public class Panel extends JPanel implements ActionListener
                 {
                     timer.stop();
                     gameFrame.dispose();
+                    Save.updateScoreBoard(logicalAgent.gamePanel);
                     new EndFrame();
                 }
                 else
