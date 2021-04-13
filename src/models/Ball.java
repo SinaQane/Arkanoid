@@ -189,9 +189,9 @@ public class Ball
             double ratio = difference / (gamePanel.getPad().getLength() / 2);
             double dv = dx*dx + dy+dy;
             if (dx > 0)
-                dx = - (1-ratio) * Math.abs(dx);
-            else
                 dx = (1-ratio) * Math.abs(dx);
+            else
+                dx = - (1-ratio) * Math.abs(dx);
             dy = - Math.sqrt(Math.abs(dv - dx*dx));
         }
     }

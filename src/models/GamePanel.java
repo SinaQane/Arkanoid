@@ -116,15 +116,19 @@ public class GamePanel
                 {
                     case 0:
                         brick = new GlassBrick(50 + i*100, 25);
+                        brick.setGamePanel(getPad().gamePanel);
                         break;
                     case 1:
                         brick = new WoodenBrick(50 + i*100, 25);
+                        brick.setGamePanel(getPad().gamePanel);
                         break;
                     case 2:
                         brick = new InvisibleBrick(50 + i*100, 25);
+                        brick.setGamePanel(getPad().gamePanel);
                         break;
                     case 3:
                         brick = new BlinkingBrick(50 + i*100, 25);
+                        brick.setGamePanel(getPad().gamePanel);
                         break;
                 }
 
