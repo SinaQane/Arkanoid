@@ -47,7 +47,7 @@ public class Pad
 
     public void deactivateDizzy()
     {
-        if (new Date().getTime() - this.getActivationTime() < 30000)
+        if (new Date().getTime() - this.getActivationTime() < 5000)
             return;
         this.dizzy = false;
         this.activationTime = 0;

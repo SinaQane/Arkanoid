@@ -54,41 +54,31 @@ public class Load
                 assert brick != null;
                 brick.setLives(lives);
 
-                Prize prize;
-
                 switch (brickArray[4])
                 {
                     case "BIGGER_PAD":
-                        prize = new BiggerPadPrize(brick);
-                        brick.setPrize(prize);
+                        new BiggerPadPrize(brick);
                         break;
                     case "SMALLER_PAD":
-                        prize = new SmallerPadPrize(brick);
-                        brick.setPrize(prize);
+                        new SmallerPadPrize(brick);
                         break;
                     case "FASTER_BALL":
-                        prize = new FasterBallPrize(brick);
-                        brick.setPrize(prize);
+                        new FasterBallPrize(brick);
                         break;
                     case "SLOWER_BALL":
-                        prize = new SlowerBallPrize(brick);
-                        brick.setPrize(prize);
+                        new SlowerBallPrize(brick);
                         break;
                     case "FIREBALL":
-                        prize = new FireBallPrize(brick);
-                        brick.setPrize(prize);
+                        new FireBallPrize(brick);
                         break;
                     case "DIZZY_PAD":
-                        prize = new DizzyPadPrize(brick);
-                        brick.setPrize(prize);
+                        new DizzyPadPrize(brick);
                         break;
                     case "TRIPLE_BALL":
-                        prize = new TripleBallPrize(brick);
-                        brick.setPrize(prize);
+                        new TripleBallPrize(brick);
                         break;
                     case "RANDOM":
-                        prize = new RandomPrize(brick);
-                        brick.setPrize(prize);
+                        new RandomPrize(brick);
                         break;
                     case "NULL":
                         brick.setPrize(null);

@@ -1,5 +1,6 @@
 package models.prizes;
 
+import models.GamePanel;
 import models.User;
 import models.bricks.Brick;
 
@@ -20,7 +21,7 @@ public class Prize
         this.brick = brick;
         this.x = brick.getX();
         this.y = brick.getY();
-        this.dy = 5;
+        this.dy = 2;
         this.radius = 5;
         this.released = false;
         brick.setPrize(this);
@@ -44,7 +45,14 @@ public class Prize
     public void setReleased()
     {
         this.released = true;
-        this.brick.getGamePanel().getReleasedPrizes().add(this);
+        try
+        {
+            this.brick.getGamePanel().addToReleasedPrizes(this);
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error " + e);
+        }
     }
 
     public void setReleased(boolean released)

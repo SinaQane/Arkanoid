@@ -78,6 +78,11 @@ public class GamePanel
         return this.releasedPrizes;
     }
 
+    public void addToReleasedPrizes(Prize prize)
+    {
+        this.releasedPrizes.add(prize);
+    }
+
     public void setName(String name)
     {
         this.name = name;

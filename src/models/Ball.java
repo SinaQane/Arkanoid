@@ -37,7 +37,7 @@ public class Ball
 
     public void deactivateFireBall()
     {
-        if (new Date().getTime() - this.getActivationTime() < 30000)
+        if (new Date().getTime() - this.getActivationTime() < 10000)
             return;
         this.fireBall = false;
         this.activationTime = 0;
@@ -185,10 +185,13 @@ public class Ball
         // Pad intersections
         if (this.padCollision())
         {
-            double difference = Math.abs(this.x - gamePanel.getPad().getX());
+            double difference = Math.abs((this.x + this.radius) - (gamePanel.getPad().getX() + (gamePanel.getPad().getLength() / 2)));
             double ratio = difference / (gamePanel.getPad().getLength() / 2);
-            dx = ratio * dx;
-            dy = -Math.abs(dy) + ratio * (Math.abs(dy) - Math.sqrt(dy*dy + dx*dx));
+            if (dx > 0)
+                dx = - (1-ratio) * Math.abs(dx);
+            else
+                dx = (1-ratio) * Math.abs(dx);
+            dy = - Math.sqrt(Math.abs(8 - dx*dx));
         }
     }
 
