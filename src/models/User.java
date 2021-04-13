@@ -36,6 +36,7 @@ public class User
 
     public void loseLife()
     {
+        this.setScore(this.getScore() - 3);
         this.lives--;
     }
 

@@ -94,7 +94,6 @@ public class Load
                         brick.setPrize(null);
                         break;
                 }
-
                 bricks.add(brick);
             }
 
@@ -151,7 +150,19 @@ public class Load
             user.setScore(score);
             user.setLives(lives);
 
-            return new GamePanel(gameName, user, bricks, balls, pad);
+            GamePanel gamePanel = new GamePanel(gameName, user, bricks, balls, pad);
+
+            user.setGamePanel(gamePanel);
+
+            for (Brick tempBrick : bricks)
+                tempBrick.setGamePanel(gamePanel);
+
+            for (Ball tempBall : balls)
+                tempBall.setGamePanel(gamePanel);
+
+            pad.setGamePanel(gamePanel);
+
+            return gamePanel;
         }
         catch (FileNotFoundException e)
         {

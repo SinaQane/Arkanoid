@@ -21,11 +21,4 @@ public class BlinkingBrick extends Brick
             inSight = !inSight;
         }
     }
-
-    @Override
-    public void getHit()
-    {
-        if (this.inSight)
-            super.getHit();
-    }
 }

@@ -47,11 +47,21 @@ public class Prize
         this.brick.getGamePanel().getReleasedPrizes().add(this);
     }
 
+    public void setReleased(boolean released)
+    {
+        this.released = released;
+    }
+
+    public boolean isReleased()
+    {
+        return released;
+    }
+
     public void movePrize()
     {
         y = y + dy;
         if (y > this.brick.getGamePanel().getHeight())
-            this.brick.getGamePanel().getReleasedPrizes().remove(this);
+            this.released = false;
     }
 
     public Rectangle getBounds()
@@ -61,7 +71,7 @@ public class Prize
 
     public void usePrize(User user)
     {
-        System.out.println("Use Prize");
+        System.out.println("Prize used.");
     }
 
     public String getKind()

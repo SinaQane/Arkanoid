@@ -55,7 +55,7 @@ public class LogicalAgent
             if (gamePanel.getPad().prizeCollision(prize))
             {
                 prize.usePrize(gamePanel.getUser());
-                gamePanel.getReleasedPrizes().remove(prize);
+                prize.setReleased(false);
             }
         }
 
@@ -71,7 +71,6 @@ public class LogicalAgent
         if (gamePanel.getUser().getLives() <= 0)
             return true;
 
-
         for (Brick brick : gamePanel.getBricks())
         {
             if (brick.getIntact() && brick.getY() > gamePanel.getHeight() - 100)
@@ -83,15 +82,24 @@ public class LogicalAgent
 
         for (Ball ball : gamePanel.getBalls())
         {
-            if (ball.getY() + 2*ball.getRadius() >= gamePanel.getHeight())
+            if (ball.isAvailable())
             {
-                if (gamePanel.getBalls().size()==1)
+                if (ball.getY() + 2 * ball.getRadius() >= gamePanel.getHeight())
                 {
-                    gamePanel.getUser().loseLife();
-                    gamePanel.getBalls().remove(ball);
-                    return true;
+                    int cnt = 0;
+                    for (Ball tempBall : gamePanel.getBalls())
+                    {
+                        if (tempBall.isAvailable())
+                            cnt++;
+                    }
+                    if (cnt == 1)
+                    {
+                        gamePanel.getUser().loseLife();
+                        ball.setAvailable(false);
+                        return true;
+                    }
+                    ball.setAvailable(false);
                 }
-                gamePanel.getBalls().remove(ball);
             }
         }
         return false;

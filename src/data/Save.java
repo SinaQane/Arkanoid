@@ -56,16 +56,26 @@ public class Save
 
         printStream.println();
 
-        printStream.println("BALLS[ " + gamePanel.getBalls().size() + " ]:");
+        int cnt = 0;
+        for (Ball tempBall : gamePanel.getBalls())
+        {
+            if (tempBall.isAvailable())
+                cnt++;
+        }
+
+        printStream.println("BALLS[ " + cnt + " ]:");
 
         for (int i = 0; i < gamePanel.getBalls().size(); i++)
         {
             Ball ball = gamePanel.getBalls().get(i);
-            int fireBall = 0;
-            if (ball.getFireBall())
-                fireBall = 1;
-            printStream.println(ball.getX() + " " + ball.getY() + " " + ball.getDx() + " " + ball.getDy()
-                    + " " + fireBall + " " + ball.getActivationTime());
+            if (ball.isAvailable())
+            {
+                int fireBall = 0;
+                if (ball.getFireBall())
+                    fireBall = 1;
+                printStream.println(ball.getX() + " " + ball.getY() + " " + ball.getDx() + " " + ball.getDy()
+                        + " " + fireBall + " " + ball.getActivationTime());
+            }
         }
 
         printStream.println();

@@ -1,6 +1,5 @@
 package models;
 
-import graphics.GameFrame;
 import models.bricks.Brick;
 
 import java.awt.*;
@@ -14,6 +13,7 @@ public class Ball
     double dx;
     double dy;
     boolean fireBall;
+    boolean isAvailable;
     long activationTime;
     GamePanel gamePanel;
 
@@ -22,9 +22,10 @@ public class Ball
         this.y = 545;
         this.x = 600;
         this.radius = 10;
-        this.dx = 2;
-        this.dy = 2;
+        this.dx = 1;
+        this.dy = 1;
         this.fireBall = false;
+        this.isAvailable = true;
         this.activationTime = 0;
     }
 
@@ -149,10 +150,8 @@ public class Ball
         // Panel intersections
         if (x <= 0)
             dx = -dx;
-
         else if (x + radius>= gamePanel.getLength())
             dx = -dx;
-
         else if (y <= 0)
             dy = -dy;
 
@@ -167,18 +166,18 @@ public class Ball
                     {
                         if (y - 2*radius - 5 <= brick.getY())
                             dy = -Math.abs(dy);
-
-                        else if (y + 5 >= brick.getY() + brick.getHeight())
+                        if (y + 5 >= brick.getY() + brick.getHeight())
                             dy = Math.abs(dy);
-
-                        else if (x + 2*radius - 5 <= brick.getX() )
+                        if (x + 2*radius - 5 <= brick.getX())
                             dx = -Math.abs(dx);
-
-                        else if (x + 5 >= brick.getX() + brick.getLength())
+                        if (x + 5 >= brick.getX() + brick.getLength())
                             dx = Math.abs(dx);
                     }
-
-                    brick.getHit();
+                    if (brick.getInSight())
+                    {
+                        this.getGamePanel().getUser().setScore(this.getGamePanel().getUser().getScore() + 1);
+                        brick.getHit();
+                    }
                 }
             }
         }
@@ -186,15 +185,30 @@ public class Ball
         // Pad intersections
         if (this.padCollision())
         {
-            // TODO make this more accurate
-            dy = -dy;
+            double difference = Math.abs(this.x - gamePanel.getPad().getX());
+            double ratio = difference / (gamePanel.getPad().getLength() / 2);
+            dx = ratio * dx;
+            dy = -Math.abs(dy) + ratio * (Math.abs(dy) - Math.sqrt(dy*dy + dx*dx));
         }
     }
 
     public void moveBall()
     {
-        this.checkIntersections();
-        x = x + dx;
-        y = y + dy;
+        if (this.isAvailable)
+        {
+            this.checkIntersections();
+            x = x + dx;
+            y = y + dy;
+        }
+    }
+
+    public boolean isAvailable()
+    {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available)
+    {
+        isAvailable = available;
     }
 }

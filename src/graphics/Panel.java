@@ -59,11 +59,14 @@ public class Panel extends JPanel implements ActionListener
 
         for(Ball ball : logicalAgent.gamePanel.getBalls())
         {
-            if(ball.getFireBall())
-                g2D.setColor(Color.orange);
-            else
-                g2D.setColor(Color.black);
-            g2D.fillOval((int) ball.getX(), (int) ball.getY(), (int) (2*ball.getRadius()), (int) (2*ball.getRadius()));
+            if (ball.isAvailable())
+            {
+                if (ball.getFireBall())
+                    g2D.setColor(Color.orange);
+                else
+                    g2D.setColor(Color.black);
+                g2D.fillOval((int) ball.getX(), (int) ball.getY(), (int) (2 * ball.getRadius()), (int) (2 * ball.getRadius()));
+            }
         }
 
         for(Brick brick : logicalAgent.gamePanel.getBricks())
@@ -89,31 +92,26 @@ public class Panel extends JPanel implements ActionListener
 
         for (Prize prize : logicalAgent.gamePanel.getReleasedPrizes())
         {
-            if(prize.getKind().equals("BIGGER_PAD"))
-                g2D.setColor(Color.white);
-
-            if(prize.getKind().equals("DIZZY_PAD"))
-                g2D.setColor(Color.red);
-
-            if(prize.getKind().equals("FASTER_BALL"))
-                g2D.setColor(Color.magenta);
-
-            if(prize.getKind().equals("FIREBALL"))
-                g2D.setColor(Color.yellow);
-
-            if(prize.getKind().equals("RANDOM"))
-                g2D.setColor(Color.pink);
-
-            if(prize.getKind().equals("SLOWER_BALL"))
-                g2D.setColor(Color.cyan);
-
-            if(prize.getKind().equals("SMALLER_PAD"))
-                g2D.setColor(Color.darkGray);
-
-            if(prize.getKind().equals("TRIPLE_BALL"))
-                g2D.setColor(Color.gray);
-
-            g2D.fillOval((int) prize.getX(), (int) prize.getY(), (int) (2*prize.getRadius()), (int) (2*prize.getRadius()));
+            if (prize.isReleased())
+            {
+                if (prize.getKind().equals("BIGGER_PAD"))
+                    g2D.setColor(Color.white);
+                if (prize.getKind().equals("DIZZY_PAD"))
+                    g2D.setColor(Color.red);
+                if (prize.getKind().equals("FASTER_BALL"))
+                    g2D.setColor(Color.magenta);
+                if (prize.getKind().equals("FIREBALL"))
+                    g2D.setColor(Color.yellow);
+                if (prize.getKind().equals("RANDOM"))
+                    g2D.setColor(Color.pink);
+                if (prize.getKind().equals("SLOWER_BALL"))
+                    g2D.setColor(Color.cyan);
+                if (prize.getKind().equals("SMALLER_PAD"))
+                    g2D.setColor(Color.darkGray);
+                if (prize.getKind().equals("TRIPLE_BALL"))
+                    g2D.setColor(Color.gray);
+                g2D.fillOval((int) prize.getX(), (int) prize.getY(), (int) (2 * prize.getRadius()), (int) (2 * prize.getRadius()));
+            }
         }
         g2D.setColor(Color.white);
         g2D.fillRect((int)logicalAgent.gamePanel.getPad().getX(),

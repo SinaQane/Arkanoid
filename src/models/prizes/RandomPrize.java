@@ -4,6 +4,8 @@ import models.Ball;
 import models.User;
 import models.bricks.Brick;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class RandomPrize extends Prize
@@ -43,10 +45,17 @@ public class RandomPrize extends Prize
                 user.getGamePanel().getPad().activateDizzy();
                 break;
             case 6:
-                Ball ball = user.getGamePanel().getBalls()
-                        .get(random.nextInt(user.getGamePanel().getBalls().size()));
+                List<Ball> availableBalls = new LinkedList<>();
+                for (Ball tempBall : user.getGamePanel().getBalls())
+                {
+                    if (tempBall.isAvailable())
+                        availableBalls.add(tempBall);
+                }
+                Ball ball = availableBalls.get(random.nextInt(availableBalls.size()));
                 Ball firstBall = new Ball();
                 Ball secondBall = new Ball();
+                firstBall.setGamePanel(ball.getGamePanel());
+                secondBall.setGamePanel(ball.getGamePanel());
                 firstBall.setX(ball.getX());
                 firstBall.setY(ball.getY());
                 secondBall.setX(ball.getX());
