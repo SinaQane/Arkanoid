@@ -17,5 +17,6 @@ public class SlowerBallPrize extends Prize
     {
         for (Ball ball : user.getGamePanel().getBalls())
             ball.slower();
+        user.setScore(user.getScore() - 5);
     }
 }

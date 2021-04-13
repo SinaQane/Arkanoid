@@ -15,7 +15,7 @@ public class BlinkingBrick extends Brick
     @Override
     public void blink()
     {
-        if (new Date().getTime() - lastChangeMoodTime >= 5000)
+        if (new Date().getTime() - lastChangeMoodTime >= 1000)
         {
             lastChangeMoodTime = new Date().getTime();
             inSight = !inSight;

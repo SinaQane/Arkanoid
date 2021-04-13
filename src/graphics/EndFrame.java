@@ -12,10 +12,10 @@ public class EndFrame extends JFrame implements ActionListener {
     
     public EndFrame()
     {
-        gameOver = new JLabel("You've lost!");
+        gameOver = new JLabel("The game is over! Better luck next time...");
         gameOver.setFont(new Font(null , Font.PLAIN , 15));
 
-        retryButton = new JButton("Retry...");
+        retryButton = new JButton("Retry");
         retryButton.addActionListener(this);
         retryButton.setFocusable(false);
 

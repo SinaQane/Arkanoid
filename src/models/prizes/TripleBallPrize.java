@@ -32,5 +32,6 @@ public class TripleBallPrize extends Prize
         secondBall.setDy(- ball.getDx()*0.6 - ball.getDy()*0.8);
         user.getGamePanel().getBalls().add(firstBall);
         user.getGamePanel().getBalls().add(secondBall);
+        user.setScore(user.getScore() + 15);
     }
 }

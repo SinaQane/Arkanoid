@@ -65,7 +65,7 @@ public class Save
             if (ball.getFireBall())
                 fireBall = 1;
             printStream.println(ball.getX() + " " + ball.getY() + " " + ball.getDx() + " " + ball.getDy()
-                    + " " + fireBall + ball.getActivationTime());
+                    + " " + fireBall + " " + ball.getActivationTime());
         }
 
         printStream.println();

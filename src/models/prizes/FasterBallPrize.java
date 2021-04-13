@@ -17,5 +17,6 @@ public class FasterBallPrize extends Prize
     {
         for (Ball ball : user.getGamePanel().getBalls())
             ball.faster();
+        user.setScore(user.getScore() + 5);
     }
 }

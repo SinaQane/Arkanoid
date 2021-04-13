@@ -10,17 +10,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class Panel extends JPanel implements ActionListener
 {
     LogicalAgent logicalAgent;
     JFrame gameFrame;
 
-    JButton startButton;
-    JButton exitButton;
-
     Action aKey;
     Action dKey;
+    Action spaceKey;
+    Action escKey;
 
     Timer timer;
 
@@ -37,32 +37,19 @@ public class Panel extends JPanel implements ActionListener
         this.setPreferredSize(new Dimension(WIDTH , HEIGHT));
         this.setBackground(new Color(36, 43, 50));
 
-        startButton = new JButton("Start/Pause");
-        startButton.setFont(new Font(null , Font.PLAIN , 8));
-        startButton.setForeground(Color.black);
-        startButton.addActionListener(this);
-        startButton.setFocusable(false);
-        startButton.setBounds(0 , 580 , 80 , 20);
-        startButton.setBackground(new Color(60, 80, 111));
-
-        exitButton = new JButton("Exit");
-        exitButton.setFont(new Font(null , Font.PLAIN , 8));
-        exitButton.setForeground(Color.black);
-        exitButton.addActionListener(this);
-        exitButton.setFocusable(false);
-        exitButton.setBounds(80 , 580 , 80 , 20);
-        exitButton.setBackground(new Color(60, 80, 111));
-
-        this.add(startButton);
-        this.add(exitButton);
-
         aKey = new LeftKey();
         dKey = new RightKey();
+        spaceKey = new SpaceKey();
+        escKey = new EscKey();
 
         this.getInputMap().put(KeyStroke.getKeyStroke('a') , "aAction");
-        this.getActionMap().put("aAction" , aKey);
+        this.getActionMap().put("aAction", aKey);
         this.getInputMap().put(KeyStroke.getKeyStroke('d') , "dAction");
-        this.getActionMap().put("dAction" , dKey);
+        this.getActionMap().put("dAction", dKey);
+        this.getInputMap().put(KeyStroke.getKeyStroke(' ') , "spaceAction");
+        this.getActionMap().put("spaceAction", spaceKey);
+        this.getInputMap().put(KeyStroke.getKeyStroke((char) KeyEvent.VK_ESCAPE) , "escapeAction");
+        this.getActionMap().put("escapeAction", escKey);
     }
 
     public void paintComponent(Graphics g)
@@ -128,7 +115,6 @@ public class Panel extends JPanel implements ActionListener
 
             g2D.fillOval((int) prize.getX(), (int) prize.getY(), (int) (2*prize.getRadius()), (int) (2*prize.getRadius()));
         }
-
         g2D.setColor(Color.white);
         g2D.fillRect((int)logicalAgent.gamePanel.getPad().getX(),
                      (int)logicalAgent.gamePanel.getPad().getY(),
@@ -162,16 +148,21 @@ public class Panel extends JPanel implements ActionListener
                 revalidate();
             }
         }
+    }
 
-        if(e.getSource() == exitButton)
+    public class RightKey extends AbstractAction
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
         {
-            timer.stop();
-            gameFrame.dispose();
-            Save.updateScoreBoard(logicalAgent.gamePanel);
-            new ExitFrame(this.logicalAgent);
+            logicalAgent.gamePanel.getPad().moveRight();
         }
+    }
 
-        if(e.getSource() == startButton)
+    public class SpaceKey extends AbstractAction
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
         {
             if(timer.isRunning())
                 timer.stop();
@@ -180,11 +171,15 @@ public class Panel extends JPanel implements ActionListener
         }
     }
 
-    public class RightKey extends AbstractAction {
+    public class EscKey extends AbstractAction
+    {
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            logicalAgent.gamePanel.getPad().moveRight();
+            timer.stop();
+            gameFrame.dispose();
+            Save.updateScoreBoard(logicalAgent.gamePanel);
+            new ExitFrame(logicalAgent);
         }
     }
 

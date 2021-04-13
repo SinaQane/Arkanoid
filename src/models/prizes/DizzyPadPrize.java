@@ -15,5 +15,6 @@ public class DizzyPadPrize extends Prize
     public void usePrize(User user)
     {
         user.getGamePanel().getPad().activateDizzy();
+        user.setScore(user.getScore() - 10);
     }
 }

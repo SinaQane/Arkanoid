@@ -170,7 +170,7 @@ public class Load
     public static GamePanel oldGame(String user, String game)
     {
         if (getGameFile(user, game) != null)
-            return loadGame("./resources/games" + user + "-" + game + ".Board");
+            return loadGame("./resources/games/" + user + "-" + game + ".Board");
         return null;
     }
 
@@ -191,7 +191,7 @@ public class Load
         File gamesDir = new File("./resources/games");
         for (File file : Objects.requireNonNull(gamesDir.listFiles()))
         {
-            String[] splitPath = file.getPath().split("\\\\");
+            String[] splitPath = file.getPath().split("/");
             String userName = splitPath[splitPath.length - 1].split("-")[0];
 
             if (userName.equals(user))

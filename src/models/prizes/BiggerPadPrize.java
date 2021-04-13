@@ -16,5 +16,6 @@ public class BiggerPadPrize extends Prize
     public void usePrize(User user)
     {
         user.getGamePanel().getPad().bigger();
+        user.setScore(user.getScore() + 5);
     }
 }

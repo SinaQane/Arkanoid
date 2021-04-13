@@ -19,7 +19,7 @@ public class Pad
     {
         this.x = 500;
         this.y = 565;
-        this.height = 5;
+        this.height = 10;
         this.length = 200;
         this.dizzy = false;
     }

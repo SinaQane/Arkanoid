@@ -17,5 +17,6 @@ public class FireBallPrize extends Prize
     {
         for (Ball ball : user.getGamePanel().getBalls())
             ball.activateFireBall();
+        user.setScore(user.getScore() + 10);
     }
 }

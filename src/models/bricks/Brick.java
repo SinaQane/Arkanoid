@@ -54,13 +54,13 @@ public class Brick
 
     public void getHit()
     {
+        this.getGamePanel().getUser().setScore(this.getGamePanel().getUser().getScore() + 1);
         if (this.lives > 0)
         {
             this.lives--;
             if (this.lives == 0)
             {
                 this.intact = false;
-
                 if(this.prize != null)
                     this.prize.setReleased();
             }
