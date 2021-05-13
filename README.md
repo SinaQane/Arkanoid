@@ -1,1 +1,3 @@
 # Arkanoid
+
+Simple old-school Arkanoid game made with Java Swing (This was the second homework assignment of my Advanced Programming course in university). I'll add some info soon enough...
